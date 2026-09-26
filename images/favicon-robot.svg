@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612">
+  <title>Robotic arm</title>
+  <rect width="612" height="612" rx="40" fill="#fff"/>
+  <g fill="#fff" stroke="#1d1d1b" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M158 269 227 419 295 378 204 246Z"/>
+    <path d="M189 178 352 123 367 164 207 226Z"/>
+    <path d="M366 107 398 37 466 64 463 78 416 71 405 112Z"/>
+    <path d="M425 146 454 171 483 131 495 138 460 207 408 179 398 161Z"/>
+    <path d="M345 114 403 92 428 155 369 183Z"/>
+    <circle cx="164" cy="222" r="48"/>
+    <circle cx="164" cy="222" r="16"/>
+    <path d="M216 535 238 475 337 475 359 535Z"/>
+    <circle cx="288" cy="442" r="63"/>
+    <circle cx="288" cy="442" r="20"/>
+    <path d="M168 574V554Q168 535 187 535H389Q408 535 408 554V574Z"/>
+  </g>
+</svg>

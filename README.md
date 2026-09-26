@@ -45,3 +45,5 @@ This branch uses a separate `style-oriolo.css` stylesheet with page-relative URL
 On success, the workflow commits changed publication data. A `workflow_run` trigger then deploys Pages from the updated branch (bot commits alone do not trigger push workflows). Every regular Pages build also renders the saved publications, so the 48-hour bio/video updates preserve the latest weekly papers. If Scholar blocks access, returns a CAPTCHA, or changes its markup, the refresh fails without overwriting saved data; existing publications remain available. No API key or anti-bot bypass is used.
 
 The five latest research videos appear as small players in one horizontal, scrollable row. Teaching retains its existing TODO until course information is added.
+
+The tab icon is `images/favicon-robot.svg`, a vector recreation of the supplied robotic-arm reference. Profile links use local Simple Icons assets in `images/icons/` with their CC0 license included.
