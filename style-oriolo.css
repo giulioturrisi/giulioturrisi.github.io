@@ -41,3 +41,12 @@ main > section + section { border-top: 2px groove #ddd; }
   .profile { grid-template-columns: 100px minmax(0, 1fr); gap: 10px; }
   .portrait { width: 100px; }
 }
+
+.publications { padding-left: 22px; }
+.publications li { margin-bottom: 16px; }
+.video-strip { display: flex; gap: 20px; overflow-x: auto; padding: 4px 0 12px; margin-bottom: 16px; }
+.video-strip .research-video { display: flex; flex-direction: column; flex: 0 0 260px; min-width: 0; margin: 0; }
+.video-strip .playlist-player { order: -1; width: 100%; margin-bottom: 10px; }
+.video-strip .research-video h3 { font-size: 13px; }
+.video-strip .video-date { font-size: 12px; margin: 6px 0 0; }
+@media (max-width: 360px) { .video-strip .research-video { flex-basis: 230px; } }

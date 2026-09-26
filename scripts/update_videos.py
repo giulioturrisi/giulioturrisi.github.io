@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 
 PLAYLIST = 'PLuRYpfDLgzSKk17CeJCtnyi84Y7XvPaBV'
 FEED = f'https://www.youtube.com/feeds/videos.xml?playlist_id={PLAYLIST}'
-PAGE = Path(__file__).resolve().parents[1] / 'videos/index.html'
+PAGE = Path(__file__).resolve().parents[1] / 'index.html'
 NS = {'atom': 'http://www.w3.org/2005/Atom', 'yt': 'http://www.youtube.com/xml/schemas/2015'}
 START = '<!-- latest-videos:start -->'
 END = '<!-- latest-videos:end -->'

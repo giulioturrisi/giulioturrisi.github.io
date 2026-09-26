@@ -1,0 +1,72 @@
+[
+  {
+    "title": "SKooP: Symmetric koopman predictions for faster and more generalizable legged robot locomotion with reinforcement learning",
+    "authors": "E D'Elia, W Zhan, G Turrisi, G Romualdi, G L'Erario, R Camoriano, W Pan, ...",
+    "venue": "2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2026",
+    "year": 2026,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:ldfaerwXgEUC"
+  },
+  {
+    "title": "Mixture-of-Experts RL for fault-tolerant legged locomotion",
+    "authors": "G Turrisi, O Pali, L Oneto, C Semini",
+    "venue": "arXiv preprint arXiv:2606.25965, 2026",
+    "year": 2026,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:2P1L_qKh6hAC"
+  },
+  {
+    "title": "BinWalker: Development and field evaluation of a quadruped manipulator platform for sustainable litter collection",
+    "authors": "G Turrisi, A Bratta, G Minelli, GF Abati, AH Rad, JCV Soares, C Semini",
+    "venue": "2026 IEEE/ASME International Conference on Advanced Intelligent Mechatronics …, 2026",
+    "year": 2026,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:vV6vV6tmYwMC"
+  },
+  {
+    "title": "Proprioceptive image: An image representation of proprioceptive data from quadruped robots for contact estimation learning",
+    "authors": "GF Abati, JCV Soares, G Turrisi, V Barasuol, C Semini",
+    "venue": "2026 IEEE International Conference on on Robotics and Automation (ICRA), 2026",
+    "year": 2026,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:BqipwSGYUEgC"
+  },
+  {
+    "title": "Feedback-MPPI: Fast sampling-based MPC via rollout differentiation--Adios low-level controllers",
+    "authors": "T Belvedere, M Ziegltrum, G Turrisi, V Modugno",
+    "venue": "IEEE Robotics and Automation 11 (1), 1-8, 2026",
+    "year": 2026,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:r0BpntZqJG4C"
+  },
+  {
+    "title": "Primal-dual iLQR for GPU-accelerated learning and control in legged robots",
+    "authors": "L Amatucci, J Sousa-Pinto, G Turrisi, D Orban, V Barasuol, C Semini",
+    "venue": "IEEE Robotics and Automation Letters 11 (1), 1010-1017, 2026",
+    "year": 2026,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:RHpTSmoSYBkC"
+  },
+  {
+    "title": "CroSTAta: Cross-state transition attention transformer for robotic manipulation",
+    "authors": "G Minelli, G Turrisi, V Barasuol, C Semini",
+    "venue": "arXiv preprint arXiv:2510.00726, 2025",
+    "year": 2025,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:hMod-77fHWUC"
+  },
+  {
+    "title": "BC-MPPI: A probabilistic constraint layer for safe model-predictive path-integral control",
+    "authors": "O Ezeji, M Ziegltrum, G Turrisi, T Belvedere, V Modugno",
+    "venue": "Agents and Robots for reliable Engineered Autonomy (AREA) 2700, 131–143, 2025",
+    "year": 2025,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:NMxIlDl6LWMC"
+  },
+  {
+    "title": "Guided reinforcement learning for omnidirectional 3D jumping in quadruped robots",
+    "authors": "R Bussola, M Focchi, G Turrisi, C Semini, L Palopoli",
+    "venue": "arXiv preprint arXiv:2507.16481, 2025",
+    "year": 2025,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:JV2RwH3_ST0C"
+  },
+  {
+    "title": "Adaptive non-linear centroidal MPC with stability guarantees for robust locomotion of legged robots",
+    "authors": "M Elobaid, G Turrisi, L Rapetti, G Romualdi, S Dafarra, T Kawakami, ...",
+    "venue": "IEEE Robotics and Automation Letters 10 (3), 2806-2813, 2025",
+    "year": 2025,
+    "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=yt9v8skAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=yt9v8skAAAAJ:_Qo2XoVZTnwC"
+  }
+]

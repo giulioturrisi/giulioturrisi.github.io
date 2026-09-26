@@ -12,11 +12,10 @@ Open http://localhost:8000.
 
 ## Edit
 
-- `index.html`: photo and biography from the GitHub profile README. Only the content between `profile-bio` markers is generated; keep manual edits outside it.
-- `research/index.html`: redirects to Google Scholar; Research navigation links open Scholar directly.
-- `teaching/index.html`: teaching and learning resources.
-- `repositories/index.html`: selected projects.
-- `videos/index.html`: five individual videos, ordered by publication date (not playlist position or last update).
+- `index.html`: single-page site with Bio sketch, Research, Teaching, Software, and Videos. The `profile-bio`, `publications`, and `latest-videos` marker blocks are generated; keep manual edits outside them.
+- `research/`, `teaching/`, `repositories/`, `videos/`: redirects to the corresponding homepage sections.
+- `data/publications.json`: ten latest publications from Scholar, in publication-date order.
+- `scripts/update_publications.py`: fetches and renders Scholar publications; `--render-only` uses the saved data without accessing Scholar.
 - `scripts/update_bio.py`: synchronizes the biography from `giulioturrisi/giulioturrisi`, branch `master`. Markdown formatting and links are rendered; the `Contact:` and `Other sites:` lines are omitted because contacts are already beside the photo. Install `scripts/requirements.txt`, then run `python3 scripts/update_bio.py` to refresh locally.
 - `scripts/update_videos.py`: refreshes the generated video section from the public YouTube playlist feed, without an API key. Run with `python3 scripts/update_videos.py`.
 - `style-oriolo.css`: shared layout, with a white background in all system themes.
@@ -35,6 +34,14 @@ The layout follows the reference’s full-width white page, compact Verdana typo
 
 The public YouTube playlist feed can be limited to 15 entries. The current playlist has 13 entries; if it grows beyond the feed limit, full-playlist retrieval should replace the feed to guarantee the newest five across every item.
 
-Biography and video updates are included in the deployed Pages artifact; the workflow does not commit generated changes back to this repository. Edit and commit the profile README on GitHub to change the source biography.
+Biography and video updates are included in the deployed Pages artifact without committing those changes. The separate publication workflow commits only `data/publications.json`. Edit and commit the profile README on GitHub to change the source biography.
 
 This branch uses a separate `style-oriolo.css` stylesheet with page-relative URLs so previews cannot reuse the previous design’s cached `/style.css`.
+
+## Weekly Scholar synchronization
+
+`publications.yml` runs every Monday at 06:41 UTC, or manually, on `main`/`master`. It fetches the public Scholar profile with `sortby=pubdate`, keeps the first ten unique papers, and preserves Scholar's ordering within each year. This is publication recency, never citation count. The public list supplies years rather than exact dates, so the renderer does not invent day/month values.
+
+On success, the workflow commits changed publication data. A `workflow_run` trigger then deploys Pages from the updated branch (bot commits alone do not trigger push workflows). Every regular Pages build also renders the saved publications, so the 48-hour bio/video updates preserve the latest weekly papers. If Scholar blocks access, returns a CAPTCHA, or changes its markup, the refresh fails without overwriting saved data; existing publications remain available. No API key or anti-bot bypass is used.
+
+The five latest research videos appear as small players in one horizontal, scrollable row. Teaching retains its existing TODO until course information is added.

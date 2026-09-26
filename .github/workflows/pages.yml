@@ -7,6 +7,10 @@ on:
     # Check daily; the gate below runs scheduled deployments every 48 hours.
     - cron: '23 0 * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows: [Refresh Scholar publications]
+    types: [completed]
+    branches: [main, master]
 
 permissions:
   contents: read
@@ -19,6 +23,7 @@ concurrency:
 
 jobs:
   schedule-gate:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     outputs:
       run: ${{ steps.check.outputs.run }}
@@ -68,6 +73,8 @@ jobs:
       - name: Report unavailable feed
         if: steps.refresh.outcome == 'failure'
         run: echo '::warning::YouTube refresh failed. Publishing the checked-in videos instead.'
+      - name: Render saved Scholar publications
+        run: python3 scripts/update_publications.py --render-only
       - name: Prepare static site
         run: |
           mkdir _site

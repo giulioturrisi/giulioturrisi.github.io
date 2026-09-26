@@ -1,0 +1,38 @@
+name: Refresh Scholar publications
+
+on:
+  schedule:
+    - cron: '41 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test Scholar parsing
+        run: python3 -m unittest discover -s scripts -p 'test_update_publications.py'
+      - name: Fetch ten most recent publications
+        run: python3 scripts/update_publications.py
+      - name: Save updated publication data
+        run: |
+          if git diff --quiet -- data/publications.json; then
+            echo 'Publication list is unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/publications.json
+          git commit -m 'Update latest Scholar publications'
+          git push
