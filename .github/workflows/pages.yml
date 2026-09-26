@@ -1,4 +1,4 @@
-name: Refresh videos and deploy Pages
+name: Refresh bio and videos and deploy Pages
 
 on:
   push:
@@ -50,6 +50,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install biography renderer
+        run: python3 -m pip install -r scripts/requirements.txt
+      - name: Verify biography synchronization
+        run: python3 -m unittest discover -s scripts -p 'test_*.py'
+      - name: Refresh profile biography
+        id: bio
+        continue-on-error: true
+        run: python3 scripts/update_bio.py
+      - name: Report unavailable biography
+        if: steps.bio.outcome == 'failure'
+        run: echo '::warning::Biography refresh failed. Publishing the checked-in biography instead.'
       - name: Refresh latest five videos
         id: refresh
         continue-on-error: true
