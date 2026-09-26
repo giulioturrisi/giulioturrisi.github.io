@@ -1,47 +1,43 @@
-/* Academic layout matching cmastalli.github.io, with Giulio's content. */
+/* Classic academic layout inspired by www.diag.uniroma1.it/oriolo/. */
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
-body { width: 750px; margin: auto; background: #fff; color: #666; font-family: "Roboto", sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-wrap: break-word; }
-a { color: #5881c9; text-decoration: none; }
-a:hover, a:focus { color: #a5bbe2; }
-a:focus-visible { outline: 2px solid #5881c9; outline-offset: 4px; }
-::selection { background: #ccd8ee; }
-header { min-height: 90px; display: flex; justify-content: space-between; align-items: flex-start; }
-header h1 { margin: 30px; font-size: 24px; line-height: 1.6; font-weight: 700; }
-.site-title { display: inline-block; color: #000; }
-header nav { display: flex; flex-wrap: wrap; margin: 30px 30px 0 0; gap: 0 20px; }
-header nav a { color: #000; font-size: 24px; font-weight: 700; }
-header a:hover { color: #404b96; }
-h2 { color: #333; font-size: 2.625em; line-height: 1.14; margin: .83em 0; font-weight: 700; }
-h3 { color: #333; font-size: 1.375em; line-height: 1.38; margin: 1.33em 0; }
-p { margin: 0 0 1.25em; }
-.profile { display: grid; grid-template-columns: 26.6% minmax(0, 1fr); align-items: center; gap: 32px; margin: 20px 0 28px; }
+body { margin: 8px; background: #fff; color: #000; font: 13px/1.4 Verdana, Arial, sans-serif; overflow-wrap: break-word; }
+a { color: #0000ee; text-decoration: underline; }
+a:visited { color: #800080; }
+a:focus-visible { outline: 2px solid #0000af; outline-offset: 3px; }
+.profile { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 12px; align-items: start; }
+.portrait-link { display: block; }
+.portrait { display: block; width: 210px; height: 194px; object-fit: cover; }
 .profile-details { min-width: 0; }
-.portrait { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
-.contacts { padding: 0; margin: 0; list-style: none; font-size: 14px; }
-.contacts li { margin: 2px 0; }
-.research-interests { font-variant: small-caps; margin: 18px 0 0; }
-.projects { list-style: none; padding: 0; }
-.projects li { margin: 0 0 24px; }
-.projects h3 { margin: 0 0 5px; font-size: 18px; }
+h1 { margin: 0 0 20px; font-size: 24px; line-height: 1.2; }
+.site-title, .site-title:visited { color: #0000af; text-decoration: none; }
+p { margin: 0 0 16px; }
+.affiliation { margin-bottom: 16px; }
+.email, .email a, .email a:visited { color: #c00000; }
+.email { margin-bottom: 16px; }
+.contacts { margin-bottom: 0; }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 10px 36px; margin-top: 10px; padding: 20px 0; border-top: 2px groove #ddd; border-bottom: 2px groove #ddd; font-size: 18px; font-weight: bold; }
+h2 { margin: 10px 0 16px; color: #0000af; font-size: 15px; line-height: 1.4; }
+h3 { font-size: 13px; margin: 0 0 4px; }
+.section-body { margin: 0 32px 20px; }
+main > section + section { border-top: 2px groove #ddd; }
+.projects { padding-left: 20px; }
+.projects li { margin-bottom: 18px; }
 .projects p { margin: 0; }
+.research-video { margin: 0 0 28px; }
+.research-video h3 { font-size: 14px; }
+.video-date { margin: 0 0 10px; }
+.playlist-player { display: block; width: min(100%, 750px); height: auto; aspect-ratio: 16 / 9; border: 0; margin: 0 0 16px; }
 .skip-link { position: absolute; left: -10000px; }
 .skip-link:focus { position: static; }
-@media (max-width: 768px) {
-  body { width: 95vw; }
-  header { justify-content: flex-start; flex-wrap: wrap; }
-  header h1 { margin: 10px 30px 0 0; }
-  header nav { margin: 18px 0 0; gap: 0 20px; }
-  header nav a { font-size: 16px; }
+@media (max-width: 600px) {
+  .profile { grid-template-columns: 130px minmax(0, 1fr); gap: 12px; }
+  .portrait { width: 130px; height: auto; }
+  h1 { font-size: 22px; margin-bottom: 12px; }
+  .site-header nav { gap: 12px 22px; padding: 16px 0; font-size: 16px; }
+  .section-body { margin-left: 16px; margin-right: 8px; }
 }
-@media (max-width: 480px) {
-  header { padding-bottom: 16px; }
-  .profile { grid-template-columns: 30% minmax(0, 1fr); gap: 18px; }
-  .research-interests { font-size: 14px; }
+@media (max-width: 360px) {
+  .profile { grid-template-columns: 100px minmax(0, 1fr); gap: 10px; }
+  .portrait { width: 100px; }
 }
-
-.playlist-player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; margin: 0 0 20px; }
-
-.research-video { margin: 0 0 36px; }
-.research-video h3 { margin: 0 0 6px; font-size: 20px; }
-.video-date { margin: 0 0 12px; font-size: 14px; }
