@@ -1,0 +1,71 @@
+name: Refresh videos and deploy Pages
+
+on:
+  push:
+    branches: [main, master]
+  schedule:
+    # Check daily; the gate below runs scheduled deployments every 48 hours.
+    - cron: '23 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  schedule-gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - name: Check 48-hour interval
+        id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python3 - <<'PYTHON'
+          import os
+          from datetime import datetime, timezone
+          # UTC day parity avoids short intervals at month boundaries.
+          day = (datetime.now(timezone.utc).date() - datetime(1970, 1, 1).date()).days
+          run = os.environ['EVENT_NAME'] != 'schedule' or day % 2 == 0
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f"run={str(run).lower()}\n")
+          PYTHON
+
+  deploy:
+    needs: schedule-gate
+    if: needs.schedule-gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh latest five videos
+        id: refresh
+        continue-on-error: true
+        run: python3 scripts/update_videos.py
+      - name: Report unavailable feed
+        if: steps.refresh.outcome == 'failure'
+        run: echo '::warning::YouTube refresh failed. Publishing the checked-in videos instead.'
+      - name: Prepare static site
+        run: |
+          mkdir _site
+          cp index.html 404.html style.css .nojekyll _site/
+          cp -R images research teaching repositories videos _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
