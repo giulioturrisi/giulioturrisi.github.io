@@ -1,0 +1,41 @@
+/* Academic layout matching cmastalli.github.io, with Giulio's content. */
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { width: 750px; margin: auto; background: #fff; color: #666; font-family: "Roboto", sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-wrap: break-word; }
+a { color: #5881c9; text-decoration: none; }
+a:hover, a:focus { color: #a5bbe2; }
+a:focus-visible { outline: 2px solid #5881c9; outline-offset: 4px; }
+::selection { background: #ccd8ee; }
+header { min-height: 90px; display: flex; justify-content: space-between; align-items: flex-start; }
+header h1 { margin: 30px; font-size: 24px; line-height: 1.6; font-weight: 700; }
+.site-title { display: inline-block; color: #000; }
+header nav { display: flex; flex-wrap: wrap; margin: 30px 30px 0 0; gap: 0 20px; }
+header nav a { color: #000; font-size: 24px; font-weight: 700; }
+header a:hover { color: #404b96; }
+h2 { color: #333; font-size: 2.625em; line-height: 1.14; margin: .83em 0; font-weight: 700; }
+h3 { color: #333; font-size: 1.375em; line-height: 1.38; margin: 1.33em 0; }
+p { margin: 0 0 1.25em; }
+.profile { display: grid; grid-template-columns: 26.6% minmax(0, 1fr); align-items: center; gap: 32px; margin: 20px 0 28px; }
+.profile-details { min-width: 0; }
+.portrait { display: block; width: 100%; height: auto; margin: 0; border-radius: 0; }
+.contacts { padding: 0; margin: 0; list-style: none; font-size: 14px; }
+.contacts li { margin: 2px 0; }
+.research-interests { font-variant: small-caps; margin: 18px 0 0; }
+.projects { list-style: none; padding: 0; }
+.projects li { margin: 0 0 24px; }
+.projects h3 { margin: 0 0 5px; font-size: 18px; }
+.projects p { margin: 0; }
+.skip-link { position: absolute; left: -10000px; }
+.skip-link:focus { position: static; }
+@media (max-width: 768px) {
+  body { width: 95vw; }
+  header { justify-content: flex-start; flex-wrap: wrap; }
+  header h1 { margin: 10px 30px 0 0; }
+  header nav { margin: 18px 0 0; gap: 0 20px; }
+  header nav a { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  header { padding-bottom: 16px; }
+  .profile { grid-template-columns: 30% minmax(0, 1fr); gap: 18px; }
+  .research-interests { font-size: 14px; }
+}
