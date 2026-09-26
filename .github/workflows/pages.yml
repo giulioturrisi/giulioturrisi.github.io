@@ -71,7 +71,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir _site
-          cp index.html 404.html style.css .nojekyll _site/
+          cp index.html 404.html style-oriolo.css .nojekyll _site/
           cp -R images research teaching repositories videos _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

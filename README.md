@@ -19,7 +19,7 @@ Open http://localhost:8000.
 - `videos/index.html`: five individual videos, ordered by publication date (not playlist position or last update).
 - `scripts/update_bio.py`: synchronizes the biography from `giulioturrisi/giulioturrisi`, branch `master`. Markdown formatting and links are rendered; the `Contact:` and `Other sites:` lines are omitted because contacts are already beside the photo. Install `scripts/requirements.txt`, then run `python3 scripts/update_bio.py` to refresh locally.
 - `scripts/update_videos.py`: refreshes the generated video section from the public YouTube playlist feed, without an API key. Run with `python3 scripts/update_videos.py`.
-- `style.css`: shared layout, with a white background in all system themes.
+- `style-oriolo.css`: shared layout, with a white background in all system themes.
 - `images/profile.png`: original profile photo.
 - `profile-readme.md`: source README snapshot, updated by the biography sync script.
 
@@ -36,3 +36,5 @@ The layout follows the reference’s full-width white page, compact Verdana typo
 The public YouTube playlist feed can be limited to 15 entries. The current playlist has 13 entries; if it grows beyond the feed limit, full-playlist retrieval should replace the feed to guarantee the newest five across every item.
 
 Biography and video updates are included in the deployed Pages artifact; the workflow does not commit generated changes back to this repository. Edit and commit the profile README on GitHub to change the source biography.
+
+This branch uses a separate `style-oriolo.css` stylesheet with page-relative URLs so previews cannot reuse the previous design’s cached `/style.css`.
