@@ -18,7 +18,7 @@ Open http://localhost:8000.
 - `scripts/update_publications.py`: fetches and renders Scholar publications; `--render-only` uses the saved data without accessing Scholar.
 - `scripts/update_bio.py`: synchronizes the biography from `giulioturrisi/giulioturrisi`, branch `master`. Markdown formatting and links are rendered; the `Contact:` and `Other sites:` lines are omitted because contacts are already beside the photo. Install `scripts/requirements.txt`, then run `python3 scripts/update_bio.py` to refresh locally.
 - `scripts/update_videos.py`: refreshes the generated video section from the public YouTube playlist feed, without an API key. Run with `python3 scripts/update_videos.py`.
-- `style-oriolo.css`: shared layout, with a white background in all system themes.
+- `style-diag.css`: shared layout, with a white background in all system themes.
 - `images/profile.png`: original profile photo.
 - `profile-readme.md`: source README snapshot, updated by the biography sync script.
 
@@ -36,7 +36,7 @@ The public YouTube playlist feed can be limited to 15 entries. The current playl
 
 Biography and video updates are included in the deployed Pages artifact without committing those changes. The separate publication workflow commits only `data/publications.json`. Edit and commit the profile README on GitHub to change the source biography.
 
-This branch uses a separate `style-oriolo.css` stylesheet with page-relative URLs so previews cannot reuse the previous design’s cached `/style.css`.
+This branch uses a separate `style-diag.css` stylesheet with page-relative URLs so previews cannot reuse the previous design’s cached `/style.css`.
 
 ## Weekly Scholar synchronization
 
