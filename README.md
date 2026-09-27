@@ -28,7 +28,7 @@ This design is isolated on `design/oriolo-style`; `master` keeps the previous de
 
 ## GitHub Pages
 
-Select **Settings → Pages → Build and deployment → Source → GitHub Actions**. The Pages workflow refreshes the biography and videos on push, every 48 hours, and on manual dispatch, then deploys the static site. A daily check at 00:23 UTC allows scheduled deployment on alternating UTC days, keeping the 48-hour cadence across month boundaries. Scheduled runs start after the workflow reaches the default branch; GitHub may delay schedules or disable them after prolonged repository inactivity. If the biography cannot be fetched or is invalid, the workflow warns and publishes the checked-in biography. If the video feed fails validation or cannot be fetched, the workflow warns and publishes the checked-in video snapshot. The `.nojekyll` file disables Jekyll processing. Paths assume this repository is served at the domain root, https://giulioturrisi.github.io/.
+Select **Settings → Pages → Build and deployment → Source → GitHub Actions**. The Pages workflow refreshes the biography and videos on push, every Monday at 07:47 UTC, and on manual dispatch, then deploys the static site. Scheduled runs start after the workflow reaches the default branch; GitHub may delay schedules or disable them after prolonged repository inactivity. If the biography cannot be fetched or is invalid, the workflow warns and publishes the checked-in biography. If the video feed fails validation or cannot be fetched, the workflow warns and publishes the checked-in video snapshot. The `.nojekyll` file disables Jekyll processing. Paths assume this repository is served at the domain root, https://giulioturrisi.github.io/.
 
 The layout follows the reference’s full-width white page, compact Verdana typography, blue underlined links, blue section titles, and horizontal rules. A photo and academic contact block sit above the navigation. The implementation uses original HTML and CSS and adapts to narrow screens.
 
@@ -42,7 +42,7 @@ This branch uses a separate `style-diag.css` stylesheet with page-relative URLs 
 
 `publications.yml` runs every Monday at 06:41 UTC, or manually, on `main`/`master`. It fetches the public Scholar profile with `sortby=pubdate`, keeps the first ten unique papers, and preserves Scholar's ordering within each year. This is publication recency, never citation count. The public list supplies years rather than exact dates, so the renderer does not invent day/month values.
 
-On success, the workflow commits changed publication data. A `workflow_run` trigger then deploys Pages from the updated branch (bot commits alone do not trigger push workflows). Every regular Pages build also renders the saved publications, so the 48-hour bio/video updates preserve the latest weekly papers. If Scholar blocks access, returns a CAPTCHA, or changes its markup, the refresh fails without overwriting saved data; existing publications remain available. No API key or anti-bot bypass is used.
+On success, the workflow commits changed publication data. A `workflow_run` trigger then deploys Pages from the updated branch (bot commits alone do not trigger push workflows). Every regular Pages build also renders the saved publications, so the weekly bio/video updates preserve the latest weekly papers. If Scholar blocks access, returns a CAPTCHA, or changes its markup, the refresh fails without overwriting saved data; existing publications remain available. No API key or anti-bot bypass is used.
 
 The five latest research videos appear as small players in one horizontal, scrollable row. Teaching retains its existing TODO until course information is added.
 
@@ -55,3 +55,5 @@ The Software section shows the six most-starred repositories from the public lis
 `.github/workflows/software.yml` runs every Monday at 07:17 UTC, or manually, on `main`/`master`. It uses the automatic `github.token` for API rate limits; no personal token or extra secret is required. The list must stay public. The workflow commits only `data/software.json`; a successful completion triggers Pages to render the saved data. Unavailable or malformed responses fail without replacing the last valid list.
 
 Refresh locally with `python3 scripts/update_software.py` (an optional `GH_TOKEN` raises the API rate limit), or render saved data with `python3 scripts/update_software.py --render-only`. The home section between `software` markers is generated. Scheduled workflows become active after integration into the default branch.
+
+All automatic refresh schedules run on Mondays: Scholar at 06:41 UTC, Software at 07:17 UTC, and biography/videos/Pages at 07:47 UTC. Successful Scholar and Software runs also trigger Pages, and manual/push triggers remain available.

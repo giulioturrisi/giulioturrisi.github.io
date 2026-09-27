@@ -4,8 +4,7 @@ on:
   push:
     branches: [main, master]
   schedule:
-    # Check daily; the gate below runs scheduled deployments every 48 hours.
-    - cron: '23 0 * * *'
+    - cron: '47 7 * * 1'
   workflow_dispatch:
   workflow_run:
     workflows: [Refresh Scholar publications, Refresh software list]
@@ -22,30 +21,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  schedule-gate:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
-    runs-on: ubuntu-latest
-    outputs:
-      run: ${{ steps.check.outputs.run }}
-    steps:
-      - name: Check 48-hour interval
-        id: check
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-        run: |
-          python3 - <<'PYTHON'
-          import os
-          from datetime import datetime, timezone
-          # UTC day parity avoids short intervals at month boundaries.
-          day = (datetime.now(timezone.utc).date() - datetime(1970, 1, 1).date()).days
-          run = os.environ['EVENT_NAME'] != 'schedule' or day % 2 == 0
-          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-              output.write(f"run={str(run).lower()}\n")
-          PYTHON
-
   deploy:
-    needs: schedule-gate
-    if: needs.schedule-gate.outputs.run == 'true' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    if: (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
