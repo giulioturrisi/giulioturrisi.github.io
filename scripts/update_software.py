@@ -97,9 +97,7 @@ def render(repositories):
         items.append(f'<li><h3><a href="{escape(r["url"], quote=True)}">{escape(r["name"])}</a> '
                      f'<span class="repo-stars" aria-label="{r["stars"]} stars">★ {r["stars"]:,}</span></h3>'
                      f'<p>{escape(r["description"])}</p></li>')
-    return ('<p>The six most-starred repositories in my '
-            f'<a href="{LIST_URL}">mystuff list</a>, ordered by stars.</p>\n'
-            '<ul class="projects">\n' + '\n'.join(items) + '\n</ul>')
+    return '<ul class="projects">\n' + '\n'.join(items) + '\n</ul>'
 
 
 def update_page(page, repositories):
