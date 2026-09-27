@@ -47,3 +47,11 @@ On success, the workflow commits changed publication data. A `workflow_run` trig
 The five latest research videos appear as small players in one horizontal, scrollable row. Teaching retains its existing TODO until course information is added.
 
 The tab icon is `images/favicon-robot.svg`, a vector recreation of the supplied robotic-arm reference. Profile links use local Simple Icons assets in `images/icons/` with their CC0 license included.
+
+## Weekly software list
+
+The Software section shows the six most-starred repositories from the public list https://github.com/stars/giulioturrisi/lists/mystuff. `scripts/update_software.py` reads the list (following pagination), gets exact star counts and descriptions from GitHub's public repository API, and sorts by stars descending, then repository name for ties. No unrelated starred repositories are included.
+
+`.github/workflows/software.yml` runs every Monday at 07:17 UTC, or manually, on `main`/`master`. It uses the automatic `github.token` for API rate limits; no personal token or extra secret is required. The list must stay public. The workflow commits only `data/software.json`; a successful completion triggers Pages to render the saved data. Unavailable or malformed responses fail without replacing the last valid list.
+
+Refresh locally with `python3 scripts/update_software.py` (an optional `GH_TOKEN` raises the API rate limit), or render saved data with `python3 scripts/update_software.py --render-only`. The home section between `software` markers is generated. Scheduled workflows become active after integration into the default branch.

@@ -8,7 +8,7 @@ on:
     - cron: '23 0 * * *'
   workflow_dispatch:
   workflow_run:
-    workflows: [Refresh Scholar publications]
+    workflows: [Refresh Scholar publications, Refresh software list]
     types: [completed]
     branches: [main, master]
 
@@ -75,6 +75,8 @@ jobs:
         run: echo '::warning::YouTube refresh failed. Publishing the checked-in videos instead.'
       - name: Render saved Scholar publications
         run: python3 scripts/update_publications.py --render-only
+      - name: Render saved software list
+        run: python3 scripts/update_software.py --render-only
       - name: Prepare static site
         run: |
           mkdir _site
