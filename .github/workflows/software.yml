@@ -1,0 +1,40 @@
+name: Refresh software list
+
+on:
+  schedule:
+    - cron: '17 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify list parsing and star ranking
+        run: python3 -m unittest discover -s scripts -p 'test_update_software.py'
+      - name: Fetch the six most-starred list repositories
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/update_software.py
+      - name: Save updated software data
+        run: |
+          git add data/software.json
+          if git diff --cached --quiet; then
+            echo 'Software list is unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Update software list and star counts'
+          git push
