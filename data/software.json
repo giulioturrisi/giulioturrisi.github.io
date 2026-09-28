@@ -3,7 +3,7 @@
     "name": "iit-DLSLab/Quadruped-PyMPC",
     "url": "https://github.com/iit-DLSLab/Quadruped-PyMPC",
     "description": "A model predictive controller for quadruped robots based on the single rigid body model and written in python. Gradient-based (acados) or Sampling-based (jax)",
-    "stars": 522
+    "stars": 523
   },
   {
     "name": "iit-DLSLab/basic-locomotion-isaaclab",
