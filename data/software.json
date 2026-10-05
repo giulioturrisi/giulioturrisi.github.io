@@ -3,19 +3,19 @@
     "name": "iit-DLSLab/Quadruped-PyMPC",
     "url": "https://github.com/iit-DLSLab/Quadruped-PyMPC",
     "description": "A model predictive controller for quadruped robots based on the single rigid body model and written in python. Gradient-based (acados) or Sampling-based (jax)",
-    "stars": 523
+    "stars": 526
   },
   {
     "name": "iit-DLSLab/basic-locomotion-isaaclab",
     "url": "https://github.com/iit-DLSLab/basic-locomotion-isaaclab",
     "description": "An IsaacLab DirectEnv for basic quadrupedal locomotion tasks, with support for multiple quadruped robots, sim-to-sim, and sim-to-real pipelines",
-    "stars": 131
+    "stars": 133
   },
   {
     "name": "iit-DLSLab/sim2real-robot-identification",
     "url": "https://github.com/iit-DLSLab/sim2real-robot-identification",
     "description": "A joints calibration routine for quadrupeds and manipulators to facilitate sim-to-real transfer from isaaclab and mujoco to real robots",
-    "stars": 84
+    "stars": 85
   },
   {
     "name": "iit-DLSLab/gym-quadruped",
