@@ -9,13 +9,13 @@
     "name": "iit-DLSLab/basic-locomotion-isaaclab",
     "url": "https://github.com/iit-DLSLab/basic-locomotion-isaaclab",
     "description": "An IsaacLab DirectEnv for basic quadrupedal locomotion tasks, with support for multiple quadruped robots, sim-to-sim, and sim-to-real pipelines",
-    "stars": 133
+    "stars": 136
   },
   {
     "name": "iit-DLSLab/sim2real-robot-identification",
     "url": "https://github.com/iit-DLSLab/sim2real-robot-identification",
     "description": "A joints calibration routine for quadrupeds and manipulators to facilitate sim-to-real transfer from isaaclab and mujoco to real robots",
-    "stars": 85
+    "stars": 86
   },
   {
     "name": "iit-DLSLab/gym-quadruped",
@@ -24,15 +24,15 @@
     "stars": 80
   },
   {
+    "name": "iit-DLSLab/locomanipulation-teleop-isaaclab",
+    "url": "https://github.com/iit-DLSLab/locomanipulation-teleop-isaaclab",
+    "description": "An IsaacLab DirectEnv for performing teleoperation with Unitree Go2 + AgileX Piper, with support for sim-to-sim and sim-to-real pipelines",
+    "stars": 34
+  },
+  {
     "name": "iit-DLSLab/morphosymm-rsl-rl",
     "url": "https://github.com/iit-DLSLab/morphosymm-rsl-rl",
     "description": "Extension of RSL-RL for using Morphological Symmetries in IsaacLab",
     "stars": 33
-  },
-  {
-    "name": "iit-DLSLab/locomanipulation-teleop-isaaclab",
-    "url": "https://github.com/iit-DLSLab/locomanipulation-teleop-isaaclab",
-    "description": "An IsaacLab DirectEnv for performing teleoperation with Unitree Go2 + AgileX Piper, with support for sim-to-sim and sim-to-real pipelines",
-    "stars": 32
   }
 ]
