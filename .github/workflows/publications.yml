@@ -1,8 +1,8 @@
 name: Refresh Scholar publications
 
+# Scholar blocks GitHub runners, so this runs only on demand.
+# scholar-reminder.yml opens a monthly issue with the manual steps instead.
 on:
-  schedule:
-    - cron: '41 6 * * 1'
   workflow_dispatch:
 
 permissions:

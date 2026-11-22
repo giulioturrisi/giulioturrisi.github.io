@@ -33,6 +33,16 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(updated.count('<li>'),10)
         self.assertEqual(updated,pub.update_page(updated,papers))
 
+    def test_saved_browser_page_updates_without_fetching(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);(root/'data').mkdir()
+            saved=root/'scholar.html';saved.write_text('<html><body><table>'+''.join(row(i) for i in range(10))+'</table></body></html>')
+            (root/'index.html').write_text('bio'+pub.START+'old'+pub.END+'videos')
+            with patch.object(pub,'ROOT',root), patch('sys.argv',['update_publications.py','--from-file',str(saved)]), patch.object(pub.urllib.request,'urlopen',side_effect=AssertionError('must not fetch')):
+                pub.main()
+            self.assertEqual(len(pub.json.loads((root/'data/publications.json').read_text())),10)
+            self.assertEqual((root/'index.html').read_text().count('<li>'),10)
+
     def test_fetch_failure_preserves_data(self):
         with TemporaryDirectory() as directory:
             root=Path(directory);(root/'data').mkdir()

@@ -1,0 +1,47 @@
+name: Remind to refresh Scholar publications
+
+# Scholar blocks automated fetches from GitHub, so publications are refreshed by hand.
+# On the 1st of each month this opens an issue assigned to the owner, which GitHub
+# emails to them. If last month's issue is still open, it comments on it instead.
+on:
+  schedule:
+    - cron: '0 8 1 * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      OWNER: ${{ github.repository_owner }}
+    steps:
+      - name: Open or bump the reminder issue
+        run: |
+          gh label create scholar-reminder --color FBCA04 --description 'Monthly reminder to refresh Scholar publications' --force
+          open=$(gh issue list --label scholar-reminder --state open --json number --jq '.[0].number // empty')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body "@$OWNER promemoria: le pubblicazioni Scholar non sono ancora state aggiornate."
+            exit 0
+          fi
+          gh issue create --title 'Aggiorna le pubblicazioni Scholar' --label scholar-reminder --assignee "$OWNER" --body-file - <<EOF
+          @$OWNER è ora di aggiornare le pubblicazioni sul sito. Google Scholar blocca il fetch automatico da GitHub, quindi va fatto a mano.
+
+          1. Apri https://scholar.google.com/citations?user=yt9v8skAAAAJ&hl=en&sortby=pubdate&pagesize=100 e salva la pagina con Ctrl+S (per esempio come \`~/Downloads/scholar.html\`).
+          2. Dalla cartella del repo:
+
+          \`\`\`bash
+          git switch main && git pull
+          python3 scripts/update_publications.py --from-file ~/Downloads/scholar.html
+          git add data/publications.json index.html
+          git commit -m "Update latest Scholar publications"
+          git push
+          \`\`\`
+
+          3. Chiudi questa issue. In alternativa, aggiungi \`closes #<numero di questa issue>\` al messaggio di commit e si chiude da sola.
+
+          Il push pubblica il sito con la nuova lista.
+          EOF

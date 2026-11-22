@@ -112,10 +112,14 @@ def update_page(page, papers):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--render-only', action='store_true')
+    parser.add_argument('--from-file', type=Path, metavar='HTML',
+                        help=f'parse a Scholar page saved from the browser instead of fetching it (open {SOURCE})')
     args = parser.parse_args()
     data = ROOT / 'data/publications.json'
     if args.render_only:
         papers = json.loads(data.read_text())
+    elif args.from_file:
+        papers = parse_publications(args.from_file.read_text(encoding='utf-8', errors='replace'))
     else:
         with urllib.request.urlopen(SOURCE, timeout=30) as response:
             papers = parse_publications(response.read().decode(response.headers.get_content_charset() or 'utf-8'))
