@@ -119,7 +119,11 @@ def main():
     if args.render_only:
         papers = json.loads(data.read_text())
     elif args.from_file:
-        papers = parse_publications(args.from_file.read_text(encoding='utf-8', errors='replace'))
+        try:
+            papers = parse_publications(args.from_file.read_text(encoding='utf-8', errors='replace'))
+        except ValueError as error:
+            raise SystemExit(f'{args.from_file}: {error}\nThe saved page must be sorted by year: '
+                             f'open {SOURCE} in the browser, save it again and retry.')
     else:
         with urllib.request.urlopen(SOURCE, timeout=30) as response:
             papers = parse_publications(response.read().decode(response.headers.get_content_charset() or 'utf-8'))

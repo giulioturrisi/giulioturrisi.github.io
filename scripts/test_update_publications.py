@@ -43,6 +43,18 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(len(pub.json.loads((root/'data/publications.json').read_text())),10)
             self.assertEqual((root/'index.html').read_text().count('<li>'),10)
 
+    def test_saved_page_sorted_by_citations_explains_fix(self):
+        with TemporaryDirectory() as directory:
+            root=Path(directory);(root/'data').mkdir()
+            saved=root/'scholar.html';saved.write_text(''.join(row(i, 2025 if i==0 else 2026) for i in range(10)))
+            (root/'data/publications.json').write_text('previous data')
+            (root/'index.html').write_text('previous page')
+            with patch.object(pub,'ROOT',root), patch('sys.argv',['update_publications.py','--from-file',str(saved)]):
+                with self.assertRaises(SystemExit) as raised: pub.main()
+            self.assertIn('sortby=pubdate',str(raised.exception.code))
+            self.assertEqual((root/'data/publications.json').read_text(),'previous data')
+            self.assertEqual((root/'index.html').read_text(),'previous page')
+
     def test_fetch_failure_preserves_data(self):
         with TemporaryDirectory() as directory:
             root=Path(directory);(root/'data').mkdir()
